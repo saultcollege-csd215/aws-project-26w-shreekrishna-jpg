@@ -1,1 +1,38 @@
-name: Test
+name: Test workflow
+
+on:
+  push:
+    branches:
+      - aws-project
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install -r app/requirements_flask.txt
+          pip install pytest
+
+      - name: Run tests
+        run: pytest
+
+      - name: Dispatch Lambda Deploy
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: lambda.yml
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Dispatch EC2 Deploy
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: ec2.yml
+          token: ${{ secrets.GITHUB_TOKEN }}

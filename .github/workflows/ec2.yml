@@ -19,6 +19,6 @@ jobs:
           username: ec2-user
           key: ${{ secrets.EC2_KEY }}
           script: |
-            cd ~/aws-project-26w-shreekrishna-jpg
+            cd ~/dice || exit
             git pull origin aws-project
             bash resources/deploy_ec2.sh

@@ -18,4 +18,4 @@ jobs:
           host: 44.204.65.123
           username: ec2-user
           key: ${{ secrets.EC2_KEY }}
-          script: bash resources/deploy_ec2.sh
+          script_path: bash resources/deploy_ec2.sh 

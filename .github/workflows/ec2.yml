@@ -18,4 +18,7 @@ jobs:
           host: 44.204.65.123
           username: ec2-user
           key: ${{ secrets.EC2_KEY }}
-          script_path: bash resources/deploy_ec2.sh 
+          script: |
+            cd ~/aws-project-26w-shreekrishna-jpg
+            git pull origin aws-project
+            bash resources/deploy_ec2.sh

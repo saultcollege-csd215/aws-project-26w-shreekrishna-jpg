@@ -10,6 +10,10 @@ def home():
                 Use the endpoint <code>/random</code> to get a random number between 1 and 100.<br>
                 Try <code>/roll/d6?n=3</code> to roll three 6-sided dice."""
 
+@app.route('/hello')
+def hello():
+    return jsonify({ "message": "Hello, World!" })
+
 @app.route('/random')
 def random_number():
     return jsonify({ "random_number" : core.rand100() })
